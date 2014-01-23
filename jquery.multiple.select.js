@@ -15,10 +15,8 @@
 			
 		this.$el = $el.hide();
 		this.options = options;
-		
 		this.$parent = $('<div class="ms-parent"></div>');
-		this.$choice = $('<button type="button" class="ms-choice"><span class="placeholder">' +
-			options.placeholder + '</span><div></div></button>');
+		this.$choice = $('<button type="button" class="ms-choice"><span class="placeholder">' + (options.placeholder || $el.attr('placeholder')) + '</span><div></div></button>');
 		this.$drop = $('<div class="ms-drop"></div>');
 		this.$el.after(this.$parent);
 		this.$parent.append(this.$choice);
@@ -226,7 +224,7 @@
 			if (selects.length) {
 				$span.removeClass('placeholder').html(selects.join(', '));
 			} else {
-				$span.addClass('placeholder').html(this.options.placeholder);
+				$span.addClass('placeholder').html(this.options.placeholder || this.$el.attr('placeholder'));
 			}
 			// set selects to select
 			this.$el.val(this.getSelects());
